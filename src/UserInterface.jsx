@@ -7,11 +7,12 @@ const UserInterface = () => {
     console.log("errrrrrrr");
     
     return (
-      <Fragment>
+      <div className='m-0 p-0'>
+
         <Navbar/>
         <Outlet/>
         <Footer/>
-      </Fragment>
+      </div>
     );
 }
 

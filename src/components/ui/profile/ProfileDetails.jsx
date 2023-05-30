@@ -56,7 +56,7 @@ export default function ProfileDetails() {
     
 <>
     <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0 m-auto mt-40">
-<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border bg-blackv ">
+<div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border ">
 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
 <div class="flex items-center">
 <p class="mb-0 dark:text-white/80">Edit Profile</p>

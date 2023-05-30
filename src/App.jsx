@@ -26,6 +26,12 @@ import OrderUpdate from "./components/dashboard/form/OrderUpdate";
 import OrderList from "./components/ui/profile/OrderList";
 import TestPage from "./test/TestPage";
 import Dashboard from "./components/dashboard/Dashboard";
+import PriceListPage from "./pages/ui/PriceListPage";
+import WasteCategoryList from "./components/dashboard/waste/WasteCategoryList";
+import WasteCategoryEdit from "./components/dashboard/waste/WasteCategoryEdit";
+import ScrapCategoryList from "./components/dashboard/scrap/ScrapCategoryList";
+import ScrapCategoryEdit from "./components/dashboard/scrap/ScrapCategoryEdit";
+import ScrapAdminList from "./components/dashboard/scrap/ScrapList";
 
 function App() {
   const [user, setUserState] = useState(0);
@@ -60,7 +66,7 @@ function App() {
           
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-
+          <Route path="/pricelist" element={<PriceListPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/pickup" element={<OrderPage />} />
         </Route>
@@ -75,6 +81,12 @@ function App() {
           <Route path="usermanage" element={<UserTable />} />
           <Route path="ordermanage" element={<OrderDetails/>}/>
           <Route path="orderupdate/:id" element={<OrderUpdate/>}/>
+          <Route path="waste" element={<WasteCategoryList/>}/>
+          <Route path="wasteCatEdit/:id" element={<WasteCategoryEdit/>}/>
+          <Route path='scrapcat' element={<ScrapCategoryList/>}/>
+          <Route path="scrapCatEdit/:id" element={<ScrapCategoryEdit/>}/>
+          <Route path="scrap" element={<ScrapAdminList/>} />
+
 
         </Route>
       </Routes>
