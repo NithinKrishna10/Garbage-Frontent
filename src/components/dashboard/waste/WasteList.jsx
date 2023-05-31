@@ -3,8 +3,8 @@ import axios from '../../../utils/axios';
 import { baseUrl } from '../../../utils/Constant';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-const ScrapAdminList = () => {
-  const [scraps, setScraps] = useState([]);
+const WasteAdminList = () => {
+  const [wastes, setScraps] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showForm,setShowForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const ScrapAdminList = () => {
   const navigate =useNavigate();
   useEffect(() => {
     fetchCategories();
-    fetchScrap();
+    fetchWaste();
   }, []);
 
 
@@ -32,9 +32,9 @@ const ScrapAdminList = () => {
       console.error(error);
     }
   };
-  const fetchScrap = async () => {
+  const fetchWaste = async () => {
     try {
-      const response = await axios.get('/adminside/scraps/');
+      const response = await axios.get('/adminside/waste-list/');
       setScraps(response.data);
       console.log(response.data);
     } catch (error) {
@@ -66,34 +66,6 @@ const ScrapAdminList = () => {
     }));
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
- 
-  //   try {
-  //     const formDataWithImage = new FormData();
-  //     formDataWithImage.append('name', formData.name);
-  //     formDataWithImage.append('category', formData.category);
-  //     formDataWithImage.append('description', formData.description);
-  //     formDataWithImage.append('weight', formData.weight);
-  //     formDataWithImage.append('price', formData.price);
-  //     formDataWithImage.append('is_active', formData.is_active);
-  //     formDataWithImage.append('image', formData.image);
-
-  //     const response = await axios.post('/adminside/scraps/', formDataWithImage);
-  //     setFormData({
-  //       name: '',
-  //       category : 0,
-  //       description: '',
-  //       weight : 0,
-  //       price : 0,
-  //       is_active: false,
-  //       image: null,
-  //     });
-  //     setScraps((prevCategories) => [...prevCategories, response.data]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -147,8 +119,8 @@ const ScrapAdminList = () => {
   const changeShow = ()=>{
     setShowForm(!showForm)
   }
-  const redirectToScrapDetail = (catId) => {
-    navigate(`/admin/scrapEdit/${catId}`);
+  const redirectToWasteDetail = (catId) => {
+    navigate(`/admin/wasteEdit/${catId}`);
   };
 
 
@@ -329,7 +301,7 @@ const ScrapAdminList = () => {
             </tr>
         </thead>
         <tbody>
-        {scraps.map((category) => (
+        {wastes.map((category) => (
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="w-4 p-4">
                     <div class="flex items-center">
@@ -365,7 +337,7 @@ const ScrapAdminList = () => {
               
                 <td class="px-6 py-4">
                   
-                  <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => redirectToScrapDetail(category.id)}>Edit Scrap</button>
+                  <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => redirectToWasteDetail(category.id)}>Edit Scrap</button>
                 </td>
             </tr>
            
@@ -378,4 +350,4 @@ const ScrapAdminList = () => {
 );
 };
 
-export default ScrapAdminList;
+export default WasteAdminList;

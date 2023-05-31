@@ -12,6 +12,7 @@ const AdminSidebar = ({ sidebarOpen }) => {
   console.log(sidebarOpen);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenn, setIsOpenn] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -64,10 +65,7 @@ const AdminSidebar = ({ sidebarOpen }) => {
             <span>Settings</span>
           </li>
          
-          <li className="p-4 cursor-pointer hover:bg-gray-700 flex items-center">
-            <RiLogoutBoxLine className="mr-2" />
-            <span>Logout</span>
-          </li>
+         
       
           <li>
       <button
@@ -110,31 +108,100 @@ const AdminSidebar = ({ sidebarOpen }) => {
         <ul id="dropdown-example" className="py-2 space-y-2">
           <li>
             <a
-              href="#"
+              href="/admin/wastecat"
               className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
-              Products
+              Waste Category
             </a>
           </li>
-          <li>
+          <li  onClick={() => {
+              navigate("/admin/waste");
+            }}>
             <a
               href="#"
               className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
-              Billing
+             Waste Types
             </a>
           </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              Invoice
-            </a>
-          </li>
+
+
+
+          
+       
         </ul>
       )}
     </li>
+
+
+
+
+    <li>
+      <button
+        type="button"
+        className={`flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${isOpen ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
+        aria-controls="dropdown-example"
+        onClick={()=>{setIsOpenn(!isOpenn)}}
+      >
+        <svg
+          aria-hidden="true"
+          className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+            clipRule="evenodd"
+          ></path>
+        </svg>
+        <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+        Scrap
+        </span>
+        <svg
+          sidebar-toggle-item
+          className={`w-6 h-6 ${isOpenn ? 'transform rotate-180' : ''}`}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      {isOpenn && (
+        <ul id="dropdown-example" className="py-2 space-y-2">
+          <li onClick={() => {
+              navigate("/admin/scrapcat");
+            }}>
+            <span
+              className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            >
+              Scrap Category
+            </span>
+          </li>
+          <li  onClick={() => {
+              navigate("/admin/scrap");
+            }}>
+            <span
+              className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            >
+             Scrap Types
+            </span>
+          </li>
+       
+        </ul>
+      )}
+    </li>
+
+    <li className="p-4 cursor-pointer hover:bg-gray-700 flex items-center">
+            <RiLogoutBoxLine className="mr-2" />
+            <span>Logout</span>
+          </li>
         </ul>
       </div>
     </div>

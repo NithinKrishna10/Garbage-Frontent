@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useState, useEffect } from "react";
 import axios from "../../../utils/axios";
 import { useParams, useNavigate } from "react-router-dom";
