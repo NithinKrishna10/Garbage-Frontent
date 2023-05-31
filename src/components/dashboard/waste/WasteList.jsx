@@ -25,7 +25,7 @@ const WasteAdminList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/adminside/scrap-categories/');
+      const response = await axios.get('/adminside/waste-categories/');
       setCategories(response.data);
       console.log(response.data);
     } catch (error) {
@@ -50,13 +50,7 @@ const WasteAdminList = () => {
     }));
   };
 
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: checked,
-    }));
-  };
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -98,7 +92,7 @@ const WasteAdminList = () => {
       formDataWithImage.append('is_active', formData.is_active);
       formDataWithImage.append('image', formData.image);
   
-      const response = await axios.post('/adminside/scraps/', formDataWithImage);
+      const response = await axios.post('/adminside/waste-list/', formDataWithImage);
       setFormData({
         name: '',
         category: 0,
@@ -251,7 +245,7 @@ const WasteAdminList = () => {
         <div>
             <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" class="inline-flex items-center text-gray-500  border border-gray-300 focus:outline-none hover:bg-blue-600 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button" onClick={changeShow}>
                 {/* <span class="sr-only">Action button</span> */}
-                ADD Scrap
+                ADD Waste
                 {/* <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> */}
             </button>
            
@@ -337,7 +331,7 @@ const WasteAdminList = () => {
               
                 <td class="px-6 py-4">
                   
-                  <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => redirectToWasteDetail(category.id)}>Edit Scrap</button>
+                  <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => redirectToWasteDetail(category.id)}>Edit Waste</button>
                 </td>
             </tr>
            

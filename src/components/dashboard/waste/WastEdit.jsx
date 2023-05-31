@@ -63,7 +63,7 @@ const WasteEditForm = () => {
     axios
       .patch(`/adminside/waste-patch/${id}/`, updatedScrap)
       .then((response) => {
-        console.log('Scrap updated successfully:', response.data);
+        console.log('Waste updated successfully:', response.data);
         Swal.fire({
             position: "center",
             icon: "success",
@@ -95,7 +95,7 @@ const WasteEditForm = () => {
             axios
             .delete(`/adminside/waste-patch/${id}`)
             .then((response) => {
-              console.log('Scrap deleted successfully:', response.data);
+              console.log('Waste deleted successfully:', response.data);
               navigate('/admin/waste')
               // Handle success, e.g., redirect to waste list page
             })
@@ -117,7 +117,7 @@ const WasteEditForm = () => {
 
     <div className="bg-gray-900 h-auto max-w-4xl mx-auto flex flex-col items-center justify-center mt-10">
     <div className="bg-gray-400 shadow-lg rounded-md p-8 w-full">
-      <h2 className="text-2xl font-bold mb-6 text-white text-center">Edit Scrap</h2>
+      <h2 className="text-2xl font-bold mb-6 text-white text-center">Edit Waste</h2>
       <form onSubmit={handleSubmit}>
         <div className="flex m-auto ">
           <div className='mx-auto w-[45%]'>
@@ -212,14 +212,14 @@ const WasteEditForm = () => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
           >
-            Update Scrap
+            Update Waste
           </button>
           <button
             type="button"
             onClick={handleDelete}
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none"
           >
-            Delete Scrap
+            Delete Waste
           </button>
         </div>
       </form>
