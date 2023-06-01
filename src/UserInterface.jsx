@@ -7,12 +7,18 @@ const UserInterface = () => {
     console.log("errrrrrrr");
     
     return (
-      <div className='m-0 p-0'>
+      <Fragment>
+
+      {/* <div className='m-0 p-0'> */}
 
         <Navbar/>
         <Outlet/>
+
+
         <Footer/>
-      </div>
+     
+      {/* </div> */}
+      </Fragment>
     );
 }
 

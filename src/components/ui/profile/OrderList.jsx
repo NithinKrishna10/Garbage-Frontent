@@ -14,8 +14,9 @@ const OrderList = () => {
   }, [user]);
 
   const fetchOrders = () => {
+     const id = user?.id
     axios
-      .get(`/api/orders/${user.id}`)
+      .get(`/api/orders/${id}`)
       .then((response) => {
         setOrders(response.data);
         console.log(response.data);
@@ -35,7 +36,9 @@ const OrderList = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+if (!user) {
+    return <p>Loading...</p>;
+  }
   return (
     // <div className="container mx-auto px-4 py-8">
     //   <h1 className="text-2xl font-bold mb-4">Order List</h1>

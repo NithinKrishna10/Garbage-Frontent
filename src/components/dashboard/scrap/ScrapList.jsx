@@ -50,14 +50,7 @@ const ScrapAdminList = () => {
     }));
   };
 
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: checked,
-    }));
-  };
-
+ 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setFormData((prevFormData) => ({

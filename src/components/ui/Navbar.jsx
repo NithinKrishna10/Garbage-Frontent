@@ -58,15 +58,15 @@ const Navbar = () => {
       <ul className="hidden md:flex">
         <li className="p-4 cursor-pointer" onClick={() => { navigate('/') }}>Home</li>
         <li
-          className="p-4 cursor-pointer relative"
+          className="p-4 cursor-pointer relative whitespace-nowrap"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          Services
+         Our Services
           { isHovered && 
             <ul className="absolute left-0 mt-2 bg-white shadow-lg" >
-              <li className="cursor-pointer  py-4 px-2 text-black hover:bg-[#538E4E] text-lg hover:text-white w-[14rem]" style={{transition: 'all 0.5s'}}>Service 1</li>
-              <li className="cursor-pointer  py-4 px-2 text-black hover:bg-[#538E4E] text-lg hover:text-white w-[14rem]" style={{transition: 'all 0.5s'}}>Service 1</li>
+              <li className="cursor-pointer  py-4 px-2 text-black hover:bg-[#538E4E] text-lg hover:text-white w-[14rem]" style={{transition: 'all 0.5s'}} onClick={()=>{navigate('/services')}}>Waste Pickup</li>
+              <li className="cursor-pointer  py-4 px-2 text-black hover:bg-[#538E4E] text-lg hover:text-white w-[14rem]" style={{transition: 'all 0.5s'}} onClick={()=>{navigate('/pricelist')}}>Price List</li>
               <li className="cursor-pointer  py-4 px-2 text-black hover:bg-[#538E4E] text-lg hover:text-white w-[14rem]" style={{transition: 'all 0.5s'}}>Service 1</li>
 
               

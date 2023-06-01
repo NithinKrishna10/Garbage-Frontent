@@ -10,12 +10,15 @@ const WasteAdminList = () => {
   const [formData, setFormData] = useState({
     name: '',
     category : '',
-    description: '',
+    best_use: '',
+    thickness:'',
     weight : 0,
     price : 0,
     is_active: false,
     image: null,
   });
+
+  
   const navigate =useNavigate();
   useEffect(() => {
     fetchCategories();
@@ -80,14 +83,20 @@ const WasteAdminList = () => {
       }
     });
   };
-  
+  // name = models.CharField(max_length=100)
+  // category = models.ForeignKey(WasteCategory, on_delete=models.CASCADE,default=None)
+  // best_use = models.TextField()
+  // thickness = models.CharField(max_length=100,default="4’ x 8’, ½” thick")
+  // weight = models.DecimalField(max_digits=10, decimal_places=2)
+  // price = models.DecimalField(max_digits=10, decimal_places=2)
   const submitForm = async () => {
     try {
       const formDataWithImage = new FormData();
       formDataWithImage.append('name', formData.name);
       formDataWithImage.append('category', formData.category);
-      formDataWithImage.append('description', formData.description);
+      formDataWithImage.append('best_use', formData.best_use);
       formDataWithImage.append('weight', formData.weight);
+      formDataWithImage.append('thickness', formData.thickness);
       formDataWithImage.append('price', formData.price);
       formDataWithImage.append('is_active', formData.is_active);
       formDataWithImage.append('image', formData.image);
@@ -96,7 +105,7 @@ const WasteAdminList = () => {
       setFormData({
         name: '',
         category: 0,
-        description: '',
+        best_use: '',
         weight: 0,
         price: 0,
         is_active: false,
@@ -160,15 +169,29 @@ const WasteAdminList = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="best_use" className="block text-sm font-medium text-gray-700">
             Description:
           </label>
           <input
           required
             type="text"
-            id="description"
-            name="description"
-            value={formData.description}
+            id="best_use"
+            name="best_use"
+            value={formData.best_use}
+            onChange={handleInputChange}
+            className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          />
+        </div>
+        <div>
+          <label htmlFor="thickness" className="block text-sm font-medium text-gray-700">
+          Thickness:
+          </label>
+          <input
+          required
+            type="text"
+            id="thickness"
+            name="thickness"
+            value={formData.thickness}
             onChange={handleInputChange}
             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
           />
@@ -280,7 +303,10 @@ const WasteAdminList = () => {
                     Category
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Description
+                    Best Use
+                </th>
+                <th scope="col" class="px-6 py-3">
+                Thickness
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Weight
@@ -320,7 +346,10 @@ const WasteAdminList = () => {
                     {category.category}
                 </td>
                 <td class="px-6 py-4">
-                    {category.description}
+                    {category.best_use}
+                </td>
+                <td class="px-6 py-4">
+                    {category.thickness}
                 </td>
                 <td class="px-6 py-4">
                     {category.weight}
