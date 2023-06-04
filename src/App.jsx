@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -19,7 +19,6 @@ import LoginPage from "./pages/ui/LoginPage";
 import { useDispatch } from "react-redux";
 import Admin from "./Admin";
 import UserTable from "./components/dashboard/tables/UserTable";
-import PlaceOrderForm from "./components/ui/form/PlaceOrderForm";
 import OrderPage from "./pages/ui/OrderPage";
 import OrderDetails from "./components/dashboard/tables/OrderTable";
 import OrderUpdate from "./components/dashboard/form/OrderUpdate";
@@ -35,6 +34,11 @@ import ScrapAdminList from "./components/dashboard/scrap/ScrapList";
 import ScrapEditForm from "./components/dashboard/scrap/ScrapEdit";
 import WasteAdminList from "./components/dashboard/waste/WasteList";
 import WasteEditForm from "./components/dashboard/waste/WastEdit";
+import BlogPage from "./pages/ui/BlogPage";
+import BlogAdminList from "./components/dashboard/blog/BlogAdminList";
+import BlogPostForm from "./components/dashboard/blog/BlogPostForm";
+import BlogDetailsPage from "./components/ui/blog/BlogContent";
+import AdminLoginForm from "./components/dashboard/AdminLoginForm";
 
 function App() {
   const [user, setUserState] = useState(0);
@@ -61,7 +65,7 @@ function App() {
   },[]);
 
   return (
-    <>
+    <Fragment>
       <Routes>
       <Route path="/test" element={<TestPage/>}/>
         <Route path="/" element={<UserInterface />}>
@@ -72,6 +76,8 @@ function App() {
           <Route path="/pricelist" element={<PriceListPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/pickup" element={<OrderPage />} />
+          <Route path="/bloglist" element={<BlogPage/>}/>
+          <Route path="/blogdetails/:id" element={<BlogDetailsPage/>}/>
         </Route>
      
         <Route path="/profile" element={<ProfilePage />}>
@@ -79,6 +85,7 @@ function App() {
           <Route path="address" element={<AddressList />} />
           <Route path="orderlist" element={<OrderList />} />
         </Route>
+        <Route path="adminlogin" element={<AdminLoginForm/>}/>
         <Route path="/admin" element={<Admin />}>
           <Route path="" element={<Dashboard/>}/>
           <Route path="usermanage" element={<UserTable />} />
@@ -92,9 +99,11 @@ function App() {
           <Route path="scrapCatEdit/:id" element={<ScrapCategoryEdit/>}/>
           <Route path="scrap" element={<ScrapAdminList/>}/>
           <Route path="scrapEdit/:id" element={<ScrapEditForm/>} />
+          <Route path="bloglist" element={<BlogAdminList/>}/>
+          <Route path="blogpost" element={<BlogPostForm/>}/>
         </Route>
       </Routes>
-    </>
+    </Fragment>
   );
 }
 

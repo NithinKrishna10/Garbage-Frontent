@@ -6,18 +6,25 @@ import {
   RiSettings3Line,
   RiLogoutBoxLine,
 } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { clearAdminDetails } from "../../redux/adminreducer";
 
 const AdminSidebar = ({ sidebarOpen }) => {
   console.log(sidebarOpen);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenn, setIsOpenn] = useState(false);
-
+  const dispatch = useDispatch()
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
   const navigate = useNavigate();
+  const handleAdminLogout=()=>{
+    dispatch(clearAdminDetails())
+    navigate('/adminlogin')
+  }
+
   return (
     <div
       className={
@@ -63,6 +70,15 @@ const AdminSidebar = ({ sidebarOpen }) => {
           <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center">
             <RiSettings3Line className="mr-2" />
             <span>Settings</span>
+          </li>
+          <li
+            className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center"
+            onClick={() => {
+              navigate("/admin/bloglist");
+            }}
+          >
+            <RiUserLine className="mr-2" />
+            <span>Blog Management</span>
           </li>
          
          
@@ -200,7 +216,7 @@ const AdminSidebar = ({ sidebarOpen }) => {
       )}
     </li>
 
-    <li className="p-4 cursor-pointer hover:bg-gray-700 flex items-center">
+    <li className="p-4 cursor-pointer hover:bg-gray-700 flex items-center" onClick={handleAdminLogout}>
             <RiLogoutBoxLine className="mr-2" />
             <span>Logout</span>
           </li>

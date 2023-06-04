@@ -1,17 +1,39 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import AdminSidebar from "./components/dashboard/AdminSidebar";
 import { useSelector } from "react-redux";
+import { setAdminDetails } from "./redux/adminreducer";
+import Cookies from "js-cookie";
+import axios from './utils/axios'
 
 const Admin = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate()
 
-  const { user } = useSelector((state) => state.user);
+  const { admin } = useSelector((state) => state.admin);
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
   };
-  // useEffect()
+  useEffect(() => {
+    const token = Cookies.get("admin_jwt");
+    if (!token) {
+      navigate('/adminlogin')
+      console.log("no");
+    } else {
+      axios
+        .get('/adminside/verify_token', {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          setUserState(response.data.admin)
+          dispatch(setAdminDetails(response.data.admin));
+        });
+    }
+  },[]);
 
   console.log(sidebarOpen);
   return (
