@@ -39,6 +39,10 @@ import BlogAdminList from "./components/dashboard/blog/BlogAdminList";
 import BlogPostForm from "./components/dashboard/blog/BlogPostForm";
 import BlogDetailsPage from "./components/ui/blog/BlogContent";
 import AdminLoginForm from "./components/dashboard/AdminLoginForm";
+import UserDashboard from "./pages/ui/UserDashboard";
+import PickupRequestForm from "./components/ui/form/PickupForm";
+import AddLocation from "./components/ui/addLocation/AddLocation";
+import PickupList from "./components/ui/profile/PickupList";
 
 function App() {
   const [user, setUserState] = useState(0);
@@ -67,6 +71,7 @@ function App() {
   return (
     <Fragment>
       <Routes>
+        <Route path="/loc" element={<AddLocation/>}/>
       <Route path="/test" element={<TestPage/>}/>
         <Route path="/" element={<UserInterface />}>
           <Route path="/" element={<HomePage />} />
@@ -78,12 +83,15 @@ function App() {
           <Route path="/pickup" element={<OrderPage />} />
           <Route path="/bloglist" element={<BlogPage/>}/>
           <Route path="/blogdetails/:id" element={<BlogDetailsPage/>}/>
+          <Route path='/pickupq' element={<PickupRequestForm/>}/>
         </Route>
      
         <Route path="/profile" element={<ProfilePage />}>
+          <Route path="" element={<UserDashboard/>}/>
           <Route path="pro" element={<ProfileDetails />} />
           <Route path="address" element={<AddressList />} />
           <Route path="orderlist" element={<OrderList />} />
+          <Route path="pickuplist" element={<PickupList />} />
         </Route>
         <Route path="adminlogin" element={<AdminLoginForm/>}/>
         <Route path="/admin" element={<Admin />}>

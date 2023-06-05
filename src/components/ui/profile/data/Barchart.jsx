@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarChart = () => {
+const UserBarChart = () => {
   // Sample data for the chart
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -28,4 +28,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default UserBarChart;

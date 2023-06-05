@@ -15,34 +15,6 @@ const ProfileSidebar = ({status}) => {
   console.log(status);
   return (
     
-// <div
-//   className={
-//     status
-//       ? "md:w-1/4 lg:w-1/5 bg-green-900 h-screen fixed left-0 ease-in-out duration-600"
-//       : "hidden md:block md:w-1/5 lg:w-[15%] bg-green-600  h-[90vh] ease-in-out duration-500"
-//   }
-// >
-//   <div className="bg-green-800 w-[calc(100%-40px)] h-[80vh] rounded-xl transition duration-300 ease-in-out transform hover:scale-105 md:m-auto md:mt-[60px]">
-//     <ul className="text-white pt-4 pl-4">
-//       <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-green-700 transition-colors duration-200" onClick={() => { navigate('') }}>
-//         Dashboard
-//       </li>
-//       <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-green-700 transition-colors duration-200" onClick={() => { navigate('/profile/pro') }}>
-//         Profile
-//       </li>
-//       <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-green-700 transition-colors duration-200" onClick={() => { navigate('/profile/address') }}>
-//         Address
-//       </li>
-//       <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-green-700 transition-colors duration-200" onClick={() => { navigate('/profile/orderlist') }}>
-//         Orders
-//       </li>
-//       <li className="p-4 cursor-pointer hover:bg-green-700 transition-colors duration-200" onClick={handleLogout}>
-//         Logout
-//       </li>
-//     </ul>
-//   </div>
-// </div>
-
 
 <div
 className={
@@ -88,6 +60,15 @@ className={
     >
       <RiClipboardLine className="mr-2" />
       <span>Orders</span>
+    </li>
+    <li
+      className="p-4 border-b border-gray-600 cursor-pointer hover:bg-green-700 transition-colors duration-200 flex items-center"
+      onClick={() => {
+        navigate('/profile/pickuplist');
+      }}
+    >
+      <RiClipboardLine className="mr-2" />
+      <span>Pickups</span>
     </li>
     <li
       className="p-4 cursor-pointer hover:bg-green-700 transition-colors duration-200 flex items-center"
