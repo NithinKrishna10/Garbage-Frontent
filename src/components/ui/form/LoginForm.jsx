@@ -170,9 +170,9 @@ const LoginForm = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
-            <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            <span onClick={()=>{navigate('/register')}} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
             Dont have account register
-            </a>
+            </span>
           </p>
         </div>
         <button onClick={handleLogout}>Logut</button>

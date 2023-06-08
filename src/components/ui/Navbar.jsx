@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [nav, setNav] = useState(false);
   const { user } = useSelector((state) => state.user);
-  // console.log(user?.name, user, "navbar");
+
   const [isHovered, setIsHovered] = useState(false);
   const handleNav = () => {
     setNav(!nav);
@@ -48,7 +48,7 @@ const Navbar = () => {
         <li className="p-4 cursor-pointer">About</li>
         <li className="p-4 cursor-pointer" onClick={()=>{navigate('/bloglist')}}>Blog</li>
         <li className="p-4 cursor-pointer">Contact</li>
-        {user ? <li className="p-4 text whitespace-nowrap cursor-pointer" onClick={() => { navigate('/profile/pro') }}>{user.name}</li> : <button className="bg-white text-teal-400 " onClick={() => { navigate('/login') }} >Login</button>}
+        {user ? <li className="p-4 text whitespace-nowrap cursor-pointer" onClick={() => { navigate('/profile') }}>{user.name}</li> : <button className="bg-white text-teal-400 " onClick={() => { navigate('/login') }} >Login</button>}
       </ul>
 
       <div onClick={handleNav} className="block md:hidden">

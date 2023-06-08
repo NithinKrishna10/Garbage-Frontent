@@ -10,18 +10,18 @@ const adminSlice = createSlice({
   },
   reducers: {
     setAdminDetails: (state, action) => {
-      console.log(action.payload,"this is actions");
+   
       state.admin = action.payload;
-      console.log(state.admin , "this is set admin deatails");
+
 
     },
     clearAdminDetails: (state) => {
 
         console.log(state.userDetails,"this is not set admin deatails");
         Cookies.remove('admin_jwt')
-        // dispatch(setAdminDetails(null));
+  
         state.userDetails = null;
-        console.log(state.admin,"after the clear");
+      
         let navgiate = useNavigate()
         navgiate('/adminlogin')
         

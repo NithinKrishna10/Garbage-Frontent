@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Outlet, useNavigate } from "react-router-dom";
 import AdminSidebar from "./components/dashboard/AdminSidebar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAdminDetails } from "./redux/adminreducer";
 import Cookies from "js-cookie";
 import axios from './utils/axios'
@@ -10,6 +10,7 @@ import axios from './utils/axios'
 const Admin = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { admin } = useSelector((state) => state.admin);
   const handleSidebarToggle = () => {
@@ -19,7 +20,7 @@ const Admin = () => {
     const token = Cookies.get("admin_jwt");
     if (!token) {
       navigate('/adminlogin')
-      console.log("no");
+      
     } else {
       axios
         .get('/adminside/verify_token', {
@@ -28,14 +29,12 @@ const Admin = () => {
           },
         })
         .then((response) => {
-          console.log(response);
-          setUserState(response.data.admin)
+          // setUserState(response.data.admin)
           dispatch(setAdminDetails(response.data.admin));
         });
     }
   },[]);
 
-  console.log(sidebarOpen);
   return (
     <Fragment>
       <div className="flex h-screen bg-gray-100">
@@ -55,8 +54,8 @@ const Admin = () => {
         </div>
         <AdminSidebar sidebarOpen={sidebarOpen} />
         {/* <div className="flex-1 overflow-y-scroll bg-gray-100"> */}
-          <div className="flex-1 m-auto justify-center overflow-y-scroll w-[100vh] items-center h-full">
-            <div className="p-6 rounded-lg shadow-md mt-10">
+          <div className="bg-gray-500 flex-1 m-auto justify-center overflow-y-scroll w-[100vh] items-center h-full">
+            <div className="bg-gray-500 p-6 rounded-lg shadow-md mt-10 h-[100vh]">
               <Outlet />
             </div>
           </div>

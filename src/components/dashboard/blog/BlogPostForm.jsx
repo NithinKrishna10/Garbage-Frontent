@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../utils/axios';
-
+import Swal from 'sweetalert2';
 function BlogPostForm() {
   const [formData, setFormData] = useState({
     title: '',

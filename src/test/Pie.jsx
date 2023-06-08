@@ -1,116 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import axios from '../../../utils/axios'
+import React from 'react'
 
-const TopCards = () => {
-    const [dash,setDash]=useState()
-    const [total_weight,setTotalWeight] = useState(0)
-    const [user_total_weight,setUserTotalWeight] = useState(0)
-    const [scrap,setScrap] = useState(0)
-    const [scrap_price,setScrapPrice] = useState(0)
-    const [waste,setWaste] = useState(0);
-    const [waste_price,setWastePrice] = useState(0);
-
-    const [achievements,setAchivements] = useState()
-    const [pickup_tracker,setPickupTracker] = useState()
-
-    const [pickup_count,setPickupCount] = useState()
-    // console.log(user,'============================================================s');
-
-    useEffect(()=>{
-       
-            fetchData();
-          
-},[])
-
-
-const fetchData=()=>{
-   
-
-    axios.get('/adminside/dash').then((response)=>{
-        console.log(response.data);
-        // console.log(response.data.achievement);
-        // setPickupTracker(response.data.pickup_tracker)
-        setTotalWeight(response.data.total_weight)
-        setUserTotalWeight(response.data.user_total_weight)
-        setScrap(response.data.scrap_weight)
-        setScrapPrice(response.data.scrap_price)
-        setWaste(response.data.waste_weight)
-        setWastePrice(response.data.waste_price)
-        setPickupCount(response.data.pickup_count)
-        if (response.data.achievement!='None'){
-
-            setAchivements(response.data.achievement)
-        }
-        setDash(response.data)
-    }).catch((error)=>{
-        console.error(error);
-    })
-}
-
-// console.log(pickup_tracker,'==================================================================================================================');
-// console.log(achievements);
-// console.log('==================================================================================================================');
-
+const Tcard = () => {
   return (
-    <Fragment>
-
-    <div className='grid lg:grid-cols-5 gap-4 p-4'>
-        <div className='lg:col-span-2 col-span-1 bg-white flex justify-between w-full border p-4 rounded-lg'>
-            <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>{total_weight}KG</p>
-                <p className='text-gray-600'>Total Waste Collected</p>
-            </div>
-            <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                <span className='text-green-700 text-lg'>+18%</span>
-            </p>
-        </div>
-        <div className='lg:col-span-2 col-span-1 bg-white flex justify-between w-full border p-4 rounded-lg'>
-            <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>{user_total_weight} KG</p>
-                <p className='text-gray-600'>Waste Collected From YOU</p>
-            </div>
-            <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                <span className='text-green-700 text-lg'>+11%</span>
-            </p>
-        </div>
-        <div className='bg-white flex justify-between w-full border p-4 rounded-lg'>
-            <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>{scrap}KG</p>
-                <p className='text-gray-600'>Recycled</p>
-            </div>
-            <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                <span className='text-green-700 text-lg'>+17%</span>
-            </p>
-        </div>
-    </div>
-{ achievements &&
-<div>
-<h1 className='text-2xl font-bold text-center'>Achievments</h1>
-    <div className='grid lg:grid-cols-5 gap-4 p-4'>
-        
-            { achievements.map((achievement)=>(
-                
-                <div className='lg:col-span-2 col-span-1 bg-white flex justify-between w-full border p-4 rounded-lg'>
-
-            <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>{achievement.name}</p>
-                <p className='text-gray-600'>{achievement.description}</p>
-                <p>{achievement.criteria}</p>
-            </div>
-            <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                <span className='text-green-700 text-lg'>+18%</span>
-            </p>
-        </div>
-            ))
-        }
-       
-        </div>
-       
-    </div>
-}
-    
-
-    <div class="mt-3 mb-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
+    <div>
+      <div class="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
   <div class="!z-5 relative flex  bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
     <div class="ml-[18px] flex h-[90px] w-auto flex-row items-center">
       <div class="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
@@ -132,8 +25,8 @@ const fetchData=()=>{
       </div>
     </div>
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
-      <p class="font-dm text-sm font-medium text-gray-600">Earnings this month</p>
-      <h4 class="text-xl font-bold text-navy-700 ">₹{scrap_price}</h4>
+      <p class="font-dm text-sm font-medium text-gray-600">Earnings</p>
+      <h4 class="text-xl font-bold text-navy-700 ">$340.5</h4>
     </div>
   </div>
   <div class="!z-5 relative flex  bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
@@ -159,7 +52,7 @@ const fetchData=()=>{
     </div>
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
       <p class="font-dm text-sm font-medium text-gray-600">Spend this month</p>
-      <h4 class="text-xl font-bold text-navy-700 ">₹{waste_price}</h4>
+      <h4 class="text-xl font-bold text-navy-700 ">$642.39</h4>
     </div>
   </div>
   <div class="!z-5 relative flex   bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
@@ -183,11 +76,10 @@ const fetchData=()=>{
       </div>
     </div>
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
-      <p class="font-dm text-sm font-medium text-gray-600">Profit</p>
-      <h4 class="text-xl font-bold text-navy-700 ">{scrap_price-waste_price}</h4>
+      <p class="font-dm text-sm font-medium text-gray-600">Sales</p>
+      <h4 class="text-xl font-bold text-navy-700 ">$574.34</h4>
     </div>
   </div>
- 
   <div class="!z-5 relative flex  bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
     <div class="ml-[18px] flex h-[90px] w-auto flex-row items-center">
       <div class="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
@@ -208,10 +100,9 @@ const fetchData=()=>{
         </span>
       </div>
     </div>
-    
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
-      <p class="font-dm text-sm font-medium text-gray-600">Pickup on this month</p>
-      <h4 class="text-xl font-bold text-navy-700 ">{pickup_count}</h4>
+      <p class="font-dm text-sm font-medium text-gray-600">Your Balance</p>
+      <h4 class="text-xl font-bold text-navy-700 ">$1,000</h4>
     </div>
   </div>
   <div class="!z-5 relative flex  bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
@@ -235,8 +126,8 @@ const fetchData=()=>{
       </div>
     </div>
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
-      <p class="font-dm text-sm font-medium text-gray-600">Scrap Waste Weight</p>
-      <h4 class="text-xl font-bold text-navy-700 ">{scrap}KG</h4>
+      <p class="font-dm text-sm font-medium text-gray-600">New Tasks</p>
+      <h4 class="text-xl font-bold text-navy-700 ">145</h4>
     </div>
   </div>
   <div class="!z-5 relative flex  bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800  dark:shadow-none !flex-row flex-grow items-center rounded-[20px]">
@@ -259,13 +150,14 @@ const fetchData=()=>{
       </div>
     </div>
     <div class="h-50 ml-4 flex w-auto flex-col justify-center">
-      <p class="font-dm text-sm font-medium text-gray-600">Waste Weight</p>
-      <h4 class="text-xl font-bold text-navy-700 ">{waste}KG</h4>
+      <p class="font-dm text-sm font-medium text-gray-600">Total Projects</p>
+      <h4 class="text-xl font-bold text-navy-700 ">$2433</h4>
     </div>
   </div>
 </div>
-    </Fragment>
+
+    </div>
   )
 }
 
-export default TopCards
+export default Tcard

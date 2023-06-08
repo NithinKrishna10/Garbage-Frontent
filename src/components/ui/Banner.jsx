@@ -30,7 +30,7 @@ const Banner = () => {
           Experience in waste disposal management services .
         </p>
         <button className="bg-[#eadb06] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-white hover:bg-white hover:text-[#538E4E]" onClick={()=>{
-          navigate('/pickup')
+          navigate('/pickupq')
         }}>
           Request Pickup
         </button>

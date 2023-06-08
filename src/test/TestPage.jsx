@@ -7,6 +7,11 @@ import Footer from '../components/ui/Footer'
 import BlogList from '../components/ui/blog/BlogList';
 
 import BlogDetailsPage from '../components/ui/blog/BlogContent';
+import Dashboard from './Dash';
+import DailyPickupGraph from './PickupGraph';
+import PieChart from './Pie';
+import PickupTypeDistribution from './pm'
+// import PickupTypeByMonth from './pm';
 const TestPage = () => {
 
 
@@ -14,8 +19,13 @@ const TestPage = () => {
     <Fragment>
       <Navbar/>
 {/* <BlogList/> */}
-<BlogDetailsPage/>
-      <Footer/>
+{/* <BlogDetailsPage/>
+      <Footer/> */}
+      {/* <Dashboard/>
+      <DailyPickupGraph/>
+      <PieChart/> */}
+      {/* <PickupTypeByMonth/> */}
+      <PickupTypeDistribution/>
     </Fragment>
     
 

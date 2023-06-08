@@ -12,7 +12,7 @@ const ProfileSidebar = ({status}) => {
     navigate('/')
     return dispatch(clearUserDetails());
   };
-  console.log(status);
+
   return (
     
 
@@ -20,7 +20,7 @@ const ProfileSidebar = ({status}) => {
 className={
   status
     ? "md:w-1/4 lg:w-1/5 bg-gray-50h-screen fixed left-0 ease-in-out duration-600"
-    : "hidden md:block md:w-1/5 lg:w-[15%] bg-gray-50 h-[90vh] ease-in-out duration-500"
+    : "hidden md:block md:w-1/5 lg:w-[15%] bg-gray-50 h-[90vh] ease-in-out duration-500 z-10"
 }
 >
 <div className="bg-green-800 w-[calc(100%-40px)] h-[80vh] rounded-xl transition duration-300 ease-in-out transform hover:scale-105 md:m-auto mt-[5vh] md:mt-[60px]">

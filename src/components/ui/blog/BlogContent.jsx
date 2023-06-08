@@ -54,7 +54,11 @@ const BlogDetailsPage = () => {
       <header className="bg-white shadow">
         <div className="container mx-auto px-4 py-6">
           <h1 className="text-3xl font-bold text-gray-800">{''}</h1>
-          <p className="text-gray-600">Published at {blog.created_at}</p>
+          <p className="text-gray-600">Published at {new Date(blog.created_at).toLocaleDateString('en-us', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            })}</p>
         </div>
       </header>
       <main className="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -66,12 +70,6 @@ const BlogDetailsPage = () => {
               className={`rounded-lg mb-6 ${imageSize === 'lg' ? 'w-full' : ''}`}
             />
             <p className="text-gray-800 text-lg mb-4">
-              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              aliquam lectus nec urna feugiat, nec fringilla elit egestas. Sed
-              consequat tellus at malesuada tempor. Integer ac enim vitae nunc
-              scelerisque dictum. Donec vitae viverra sem. Quisque pharetra,
-              turpis nec viverra faucibus, ligula quam posuere mi, at bibendum
-              velit sem vitae felis. Nulla feugiat consequat odio a ullamcorper. */}
               {blog.content}
             </p>
             <p className="text-gray-800 text-lg mb-4">

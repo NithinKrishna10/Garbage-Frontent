@@ -53,22 +53,21 @@ import { setLatLng } from '../../../redux/locationSlice';
 const AddLocation = () => {
 
   const dispatch = useDispatch()
-  
-  const [lng, setLng] = useState(54.37585762735543);
-  const [lat, setLat] = useState(24.45677614934833);
+  const [lng, setLng] = useState(76.3219384);
+  const [lat, setLat] = useState(9.9383156);
   console.log(lat,lng);
   const setlatlnggeo = (e)=>{
    
-    console.log(e);
+    // console.log(e);
     // console.log(e.lngLat.lng);
     setLng( e.coords.longitude)
     setLat(e.coords.latitude)
     dispatch(setLatLng({ lng, lat }));
   }
   const setlatlng = (e)=>{
-    console.log(e);
+    // console.log(e);
     // console.log(e.lngLat.lng);
-    setLng(e.lngLat.lng)
+    setLng(e.lngLat.lng,'new late')
     setLat(e.lngLat.lat)
     dispatch(setLatLng({ lng, lat }));
   }
@@ -77,12 +76,13 @@ const AddLocation = () => {
 
     <div className="App">
     {/* {console.log(import.meta.env.VITE_REACT_APP_MAP_TOKEN)} */}
-      <h1>Mapbox tutorial</h1>
+      <h1>Select Location</h1>
       <Map
         mapboxAccessToken={import.meta.env.VITE_REACT_APP_MAP_TOKEN}
         style={{
           width: "50vh",
-          height: "40vh",
+          height: "50vh",
+          margin:'auto',
           borderRadius: "15px",
           border: "2px solid red",
         }}

@@ -43,9 +43,13 @@ import UserDashboard from "./pages/ui/UserDashboard";
 import PickupRequestForm from "./components/ui/form/PickupForm";
 import AddLocation from "./components/ui/addLocation/AddLocation";
 import PickupList from "./components/ui/profile/PickupList";
+import PickupPage from "./pages/ui/PickupPage";
+import PickupRequestTable from "./components/dashboard/pickup/PickupList";
+import EditPickupRequest from "./components/dashboard/pickup/PickupEdit";
+import PickupItems from "./components/ui/profile/PickupItems";
 
 function App() {
-  const [user, setUserState] = useState(0);
+  const [userr, setUserState] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -61,12 +65,13 @@ function App() {
           },
         })
         .then((response) => {
-          console.log(response);
           setUserState(response.data.user)
           dispatch(setUserDetails(response.data.user));
+
         });
-    }
-  },[]);
+      }
+    },[]);
+    // console.log(user,'====================================top card=========================================');
 
   return (
     <Fragment>
@@ -83,7 +88,7 @@ function App() {
           <Route path="/pickup" element={<OrderPage />} />
           <Route path="/bloglist" element={<BlogPage/>}/>
           <Route path="/blogdetails/:id" element={<BlogDetailsPage/>}/>
-          <Route path='/pickupq' element={<PickupRequestForm/>}/>
+          <Route path='/pickupq' element={<PickupPage/>}/>
         </Route>
      
         <Route path="/profile" element={<ProfilePage />}>
@@ -92,6 +97,7 @@ function App() {
           <Route path="address" element={<AddressList />} />
           <Route path="orderlist" element={<OrderList />} />
           <Route path="pickuplist" element={<PickupList />} />
+          <Route path="pickupitems/:id" element={<PickupItems/>}/>
         </Route>
         <Route path="adminlogin" element={<AdminLoginForm/>}/>
         <Route path="/admin" element={<Admin />}>
@@ -109,6 +115,8 @@ function App() {
           <Route path="scrapEdit/:id" element={<ScrapEditForm/>} />
           <Route path="bloglist" element={<BlogAdminList/>}/>
           <Route path="blogpost" element={<BlogPostForm/>}/>
+          <Route path="pickuplist" element={<PickupRequestTable/>} />
+          <Route path="pickupedit/:id" element={<EditPickupRequest/>} />
         </Route>
       </Routes>
     </Fragment>

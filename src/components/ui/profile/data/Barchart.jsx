@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar ,} from 'react-chartjs-2';
 
 const UserBarChart = () => {
   // Sample data for the chart
@@ -22,7 +22,7 @@ const UserBarChart = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className=" h-[600px]">
       <Bar data={data} />
     </div>
   );

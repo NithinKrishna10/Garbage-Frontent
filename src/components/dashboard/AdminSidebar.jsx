@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { clearAdminDetails } from "../../redux/adminreducer";
 
 const AdminSidebar = ({ sidebarOpen }) => {
-  console.log(sidebarOpen);
+
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenn, setIsOpenn] = useState(false);
@@ -29,8 +29,8 @@ const AdminSidebar = ({ sidebarOpen }) => {
     <div
       className={
         sidebarOpen
-          ? "md:w-1/4 lg:w-1/5  h-screen fixed left-0 ease-in-out duration-600"
-          : "hidden md:block md:w-1/5 lg:w-[13%] h-screen ease-in-out duration-500 "
+          ? "md:w-1/4 lg:w-1/5  h-screen fixed left-0 ease-in-out duration-600 z-10"
+          : "hidden md:block md:w-1/5 lg:w-[13%] h-screen ease-in-out duration-500 z-40"
       }
     >
       <div className="flex items-center justify-between p-4 border-b border-gray-600">
@@ -66,6 +66,15 @@ const AdminSidebar = ({ sidebarOpen }) => {
           >
             <RiShoppingCartLine className="mr-2" />
             <span>Order Management</span>
+          </li>
+          <li
+            className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center"
+            onClick={() => {
+              navigate("/admin/pickuplist");
+            }}
+          >
+            <RiShoppingCartLine className="mr-2" />
+            <span>Pickup Management</span>
           </li>
           <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center">
             <RiSettings3Line className="mr-2" />

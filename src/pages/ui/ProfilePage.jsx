@@ -18,7 +18,7 @@ const ProfilePage = () => {
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
   };
-  console.log(sidebarOpen);
+  // console.log(sidebarOpen);
   useEffect(() => {
     const token = Cookies.get("jwt");
     if (!token) {
@@ -32,7 +32,7 @@ const ProfilePage = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+    
           // setUserState(response.data.user)1n
           dispatch(setUserDetails(response.data.user));
         });

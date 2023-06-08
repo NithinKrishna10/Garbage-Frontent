@@ -104,7 +104,7 @@ const AddressList = () => {
   };
 
   return (
-    <div className="w-[89vh] md:ml-auto md:mr-auto ml-10 mr-10 mt-11">
+    <div className="max-w-[89vh] md:ml-auto md:mr-auto ml-10 mr-10 mt-11">
       <h2 className="text-xl font-bold mb-4">Address List</h2>
       {addresses.map((address) => (
         <div

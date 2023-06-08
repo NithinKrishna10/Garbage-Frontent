@@ -1,7 +1,8 @@
 import React from 'react';
 import TopCards from './dash/TopCard';
-import RecentOrders from './dash/RecentOrders';
+
 import BarChart from './dash/Bar';
+import AdminRecentPickups from './dash/RecentPickups';
 
 const Dashboard = () => {
     return (
@@ -11,7 +12,7 @@ const Dashboard = () => {
   <div className='flex space-x-4'>
     
 <BarChart/>
-  <RecentOrders/>
+  <AdminRecentPickups/>
   </div>
   </>
     );

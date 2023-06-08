@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import axios from '../../../utils/axios'
+import axios from '../../../../utils/axios'
+import { useSelector } from 'react-redux';
 
-const TopCards = () => {
+
+const UserTopCards = () => {
+    const { user } = useSelector((state) => state.user);
+    // /console.log(user,'====================================top card=========================================');
     const [dash,setDash]=useState()
     const [total_weight,setTotalWeight] = useState(0)
     const [user_total_weight,setUserTotalWeight] = useState(0)
@@ -17,16 +21,16 @@ const TopCards = () => {
     // console.log(user,'============================================================s');
 
     useEffect(()=>{
-       
+        if (user) {
             fetchData();
-          
-},[])
+          }
+},[user])
 
 
 const fetchData=()=>{
    
-
-    axios.get('/adminside/dash').then((response)=>{
+    const id = user?.id
+    axios.get(`/api/dash/${id}`).then((response)=>{
         console.log(response.data);
         // console.log(response.data.achievement);
         // setPickupTracker(response.data.pickup_tracker)
@@ -268,4 +272,4 @@ const fetchData=()=>{
   )
 }
 
-export default TopCards
+export default UserTopCards

@@ -12,7 +12,7 @@ const ProfileSidebar = () => {
 
   return (
     <div>
-    <div className="bg-stone-600">
+    <div className="bg-stone-600 z-50">
       <div className="flex justify-between items-center h-16 max-w-[1240px] max-h-full mx-auto px-4 text-white">
         <h1 className="text-2xl font-bold text-white">User Dashboard</h1>
         <div onClick={handleSidebarToggle} className="md:hidden">
