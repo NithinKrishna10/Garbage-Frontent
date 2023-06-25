@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import OrderDetails from './OrderTable';
+import axios from '../../../utils/axios';
+import Cookies from 'js-cookie';
 
 function UserTable() {
   const [users, setUsers] = useState([]);
@@ -9,15 +9,23 @@ function UserTable() {
   const [usersPerPage] = useState(10);
 
   useEffect(() => {
+    const token = Cookies.get("admin_jwt");
     axios
-      .get('http://127.0.0.1:8000/adminside/userlist')
+      .get('/adminside/userlist', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => setUsers(response.data))
       .catch((error) => console.error(error));
   }, []);
-
   const handleBlockUser = (id) => {
     axios
-      .patch(`http://127.0.0.1:8000/adminside/block_user/${id}/`)
+      .patch(`/adminside/block_user/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const updatedUsers = users.map((user) => {
           if (user.id === id) {
@@ -36,7 +44,11 @@ function UserTable() {
 
   const handleUnBlockUser = (id) => {
     axios
-      .patch(`http://127.0.0.1:8000/adminside/unblock_user/${id}/`)
+      .patch(`.adminside/unblock_user/${id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const updatedUsers = users.map((user) => {
           if (user.id === id) {

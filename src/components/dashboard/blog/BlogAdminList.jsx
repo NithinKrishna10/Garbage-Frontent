@@ -3,8 +3,9 @@ import axios from "../../../utils/axios";
 import { baseUrl } from "../../../utils/Constant";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import Cookies from "js-cookie";
 const BlogAdminList = () => {
+  const token = Cookies.get("admin_jwt");
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -13,7 +14,11 @@ const BlogAdminList = () => {
 
   const fetchPosts = () => {
     axios
-      .get("adminside/posts/")
+      .get("adminside/posts/", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setPosts(response.data);
         console.log(response.data, "hai i am in the post section");
@@ -38,7 +43,7 @@ const BlogAdminList = () => {
             onClick={()=>{navigate('/admin/blogpost')}}
           >
             {/* <span class="sr-only">Action button</span> */}
-            ADD Scrap
+            Post Blog
             {/* <svg class="w-3 h-3 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> */}
           </button>
         </div>

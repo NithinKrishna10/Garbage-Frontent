@@ -2,8 +2,10 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "../../../utils/axios";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 const EditPickupRequest = () => {
+  const token = Cookies.get("admin_jwt");
   const { id } = useParams();
   const [pickupRequest, setPickupRequest] = useState(null);
   const [pickup_type, setPickupType] = useState("");
@@ -31,7 +33,11 @@ const [showAddItem,setShowAddItem]= useState(false)
 
   const fetchPickupRequest = () => {
     axios
-      .get(`/adminside/pickup-request/${id}`)
+      .get(`/adminside/pickup-request/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setPickupRequest(response.data);
         setPickupType(response.data.pickup_type);
@@ -48,7 +54,11 @@ const [showAddItem,setShowAddItem]= useState(false)
 
 const fetchPickupItems=()=>{
     axios
-    .get(`adminside/pickupitem/${id}`)
+    .get(`adminside/pickupitem/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     .then((response)=>{
         console.log(response);
         setPickupItems(response.data)
@@ -68,9 +78,13 @@ const fetchPickupItems=()=>{
       special_instructions,
 
     };
-    console.log(updatedPickupRequest,'======================================== ===========================================');
+
     axios
-      .patch(`/adminside/pickup-request/${id}/`, updatedPickupRequest)
+      .patch(`/adminside/pickup-request/${id}/`, updatedPickupRequest, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         Swal.fire({
           position: "center",
@@ -100,7 +114,11 @@ const postItemData ={
     description
 }
 
-axios.post('adminside/pickup-item' ,postItemData)
+axios.post('adminside/pickup-item' ,postItemData, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
 .then((response)=>{
     console.log('posted item' ,response.data);
 }).catch((error)=>{
@@ -161,8 +179,8 @@ axios.post('adminside/pickup-item' ,postItemData)
     className="bg-gray-700 text-white rounded-md py-2 px-3 w-full"
   >
     <option value="option1">{pickupRequest.pickup_status}</option>
-    <option value="option2">Accepted</option>
-    <option value="option3">Completed</option>
+    <option value="Accepted">Accepted</option>
+    <option value="Completed">Completed</option>
   </select>
 </div>
 
@@ -226,7 +244,7 @@ axios.post('adminside/pickup-item' ,postItemData)
 { showAddItem&&
   <div className="bg-gray-900 h-auto max-w-3xl mx-auto flex flex-col items-center justify-center mt-10">
     <div className="bg-gray-400 shadow-lg rounded-md p-8 w-full">
-      <h2 className="text-2xl font-bold mb-6 text-white text-center">Add Address</h2>
+      <h2 className="text-2xl font-bold mb-6 text-white text-center">Add Item</h2>
       <form onSubmit={handeleItems}>
         <div className="grid grid-cols-2 gap-4">
           <div>

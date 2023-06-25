@@ -5,6 +5,8 @@ import {
   RiShoppingCartLine,
   RiSettings3Line,
   RiLogoutBoxLine,
+  RiUser2Line,
+  RiShoppingCart2Line,
 } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -55,26 +57,18 @@ const AdminSidebar = ({ sidebarOpen }) => {
               navigate("/admin/usermanage");
             }}
           >
-            <RiUserLine className="mr-2" />
-            <span>User Management</span>
+            <RiUser2Line className="mr-2" />
+            <span className="whitespace-nowrap text-sm ">User Management</span>
           </li>
-          <li
-            className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center"
-            onClick={() => {
-              navigate("/admin/ordermanage");
-            }}
-          >
-            <RiShoppingCartLine className="mr-2" />
-            <span>Order Management</span>
-          </li>
+          
           <li
             className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center"
             onClick={() => {
               navigate("/admin/pickuplist");
             }}
           >
-            <RiShoppingCartLine className="mr-2" />
-            <span>Pickup Management</span>
+            <RiShoppingCart2Line className="mr-2" />
+            <span className="whitespace-nowrap text-sm">Manage Pickup</span>
           </li>
           <li className="p-4 border-b border-gray-600 cursor-pointer hover:bg-gray-700 flex items-center">
             <RiSettings3Line className="mr-2" />
@@ -87,7 +81,7 @@ const AdminSidebar = ({ sidebarOpen }) => {
             }}
           >
             <RiUserLine className="mr-2" />
-            <span>Blog Management</span>
+            <span className="whitespace-nowrap text-sm">Blog Management</span>
           </li>
          
          

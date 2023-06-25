@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import axios from '../../utils/axios';
-import { setAdminDetails } from '../../redux/adminreducer';
+import axios from '../../../utils/axios';
+import { setAdminDetails } from '../../../redux/adminreducer';
 import Cookies from 'js-cookie';
 const AdminLoginForm = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const AdminLoginForm = () => {
             Swal.fire({
               position: "center",
               icon: "error",
-              title: "Email or Password is incorrect",
+              title: response.data.status,
               showConfirmButton: false,
               timer: 1500,
             });

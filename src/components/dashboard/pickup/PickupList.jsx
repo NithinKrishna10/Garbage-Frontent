@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../../utils/axios';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 const PickupRequestTable = () => {
+  const token = Cookies.get("admin_jwt");
   const [orders, setOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [ordersPerPage] = useState(5); // Number of orders to display per page
@@ -12,7 +13,11 @@ const PickupRequestTable = () => {
 
   useEffect(() => {
     // Fetch the pickup requests data from the API
-    axios.get('/adminside/pickup-requests/')
+    axios.get('/adminside/pickup-requests/', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(response => {
         
         setOrders(response.data);
@@ -36,10 +41,7 @@ const PickupRequestTable = () => {
     const redirectToPickupDetails = (pId) => {
       navigate(`/admin/pickupedit/${pId}`);
     };
-    if (!user) {
-      return <p>Loading...</p>;
-    }
-  
+
     return (
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold mb-4 text-indigo-700">Pickup List</h1>

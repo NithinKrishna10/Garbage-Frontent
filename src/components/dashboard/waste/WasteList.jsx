@@ -3,7 +3,9 @@ import axios from '../../../utils/axios';
 import { baseUrl } from '../../../utils/Constant';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 const WasteAdminList = () => {
+  const token = Cookies.get("admin_jwt");
   const [wastes, setScraps] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showForm,setShowForm] = useState(false)
@@ -28,7 +30,11 @@ const WasteAdminList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/adminside/waste-categories/');
+      const response = await axios.get('/adminside/waste-categories/', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setCategories(response.data);
       console.log(response.data);
     } catch (error) {
@@ -37,7 +43,11 @@ const WasteAdminList = () => {
   };
   const fetchWaste = async () => {
     try {
-      const response = await axios.get('/adminside/waste-list/');
+      const response = await axios.get('/adminside/waste-list/', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setScraps(response.data);
       console.log(response.data);
     } catch (error) {
@@ -101,7 +111,11 @@ const WasteAdminList = () => {
       formDataWithImage.append('is_active', formData.is_active);
       formDataWithImage.append('image', formData.image);
   
-      const response = await axios.post('/adminside/waste-list/', formDataWithImage);
+      const response = await axios.post('/adminside/waste-list/', formDataWithImage, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setFormData({
         name: '',
         category: 0,

@@ -83,7 +83,6 @@ const PickupRequestForm = () => {
       contactPerson,
     };
     const requestPickup = () => {
-      console.log("this is requestPickup", pickupRequestData);
 
       axios
         .post("/pickup/pickup-requests/", pickupRequestData, {
@@ -136,7 +135,7 @@ const PickupRequestForm = () => {
     if (pickup_type == "Waste") {
       if (weight < 20) {
         setPrice(100);
-      } else if (weight < 50) {
+      } else if (weight > 50) {
         setPrice(200);
       } else {
         setPrice(300);

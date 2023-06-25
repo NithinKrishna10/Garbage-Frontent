@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../../../utils/axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { baseUrl } from "../../../utils/Constant";
+import Cookies from "js-cookie";
 
 const WasteCategoryEdit = () => {
   const { id } = useParams();
@@ -13,12 +13,17 @@ const WasteCategoryEdit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = Cookies.get("admin_jwt");
     fetchWasteCategory();
   }, []);
 
   const fetchWasteCategory = () => {
     axios
-      .get(`/adminside/waste-edit/${id}`)
+      .get(`/adminside/waste-edit/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setWasteCategory(response.data);
         setName(response.data.name);
@@ -46,7 +51,11 @@ const WasteCategoryEdit = () => {
 
 
     axios
-      .patch(`/adminside/waste-edit/${id}/`, formDataWithImage)
+      .patch(`/adminside/waste-edit/${id}/`, formDataWithImage, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log("Waste category updated successfully:", response.data);
         Swal.fire({
@@ -65,7 +74,11 @@ const WasteCategoryEdit = () => {
 
   const deleteWasteCategory = () => {
     axios
-      .delete(`/adminside/waste-edit/${id}`)
+      .delete(`/adminside/waste-edit/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log("Waste category deleted successfully");
         Swal.fire({

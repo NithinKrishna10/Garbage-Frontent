@@ -38,7 +38,7 @@ import BlogPage from "./pages/ui/BlogPage";
 import BlogAdminList from "./components/dashboard/blog/BlogAdminList";
 import BlogPostForm from "./components/dashboard/blog/BlogPostForm";
 import BlogDetailsPage from "./components/ui/blog/BlogContent";
-import AdminLoginForm from "./components/dashboard/AdminLoginForm";
+import AdminLoginForm from "./components/dashboard/form/AdminLoginForm";
 import UserDashboard from "./pages/ui/UserDashboard";
 import PickupRequestForm from "./components/ui/form/PickupForm";
 import AddLocation from "./components/ui/addLocation/AddLocation";

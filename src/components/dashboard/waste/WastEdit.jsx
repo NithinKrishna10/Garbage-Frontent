@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../../utils/axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 const WasteEditForm = () => {
       const { id } = useParams();
@@ -15,6 +16,7 @@ const WasteEditForm = () => {
   const [image, setImage] = useState(null);
   const [is_active, setIsActive] = useState(true);
   const navigate = useNavigate()
+  const token = Cookies.get("admin_jwt");
 
   useEffect(() => {
     fetchWaste();
@@ -22,7 +24,11 @@ const WasteEditForm = () => {
 
   const fetchWaste = () => {
     axios
-      .get(`/adminside/waste-patch/${id}`)
+      .get(`/adminside/waste-patch/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         const { name, category, description, weight, price, image, is_active } = response.data;
         setWaste(response.data);
@@ -61,7 +67,11 @@ const WasteEditForm = () => {
     updatedScrap.append('is_active', is_active);
 
     axios
-      .patch(`/adminside/waste-patch/${id}/`, updatedScrap)
+      .patch(`/adminside/waste-patch/${id}/`, updatedScrap, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         console.log('Waste updated successfully:', response.data);
         Swal.fire({

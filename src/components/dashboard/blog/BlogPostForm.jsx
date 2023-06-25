@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../../utils/axios';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 function BlogPostForm() {
+  const token = Cookies.get("admin_jwt");
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -23,7 +25,11 @@ function BlogPostForm() {
   }, []);
 
   const fetchCategories = () => {
-    axios.get('adminside/post-categories/')
+    axios.get('adminside/post-categories/', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => {
         setCategories(response.data);
       })
@@ -33,7 +39,11 @@ function BlogPostForm() {
   };
 
   const fetchTags = () => {
-    axios.get('adminside/post-tags')
+    axios.get('adminside/post-tags', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => {
         setTags(response.data);
       })
@@ -80,8 +90,12 @@ function BlogPostForm() {
         console.log(key,formData[key]);
       postData.append(key, formData[key]);
     }
-    console.log(postData,'this is post data');
-    axios.post('adminside/posts/', postData)
+
+    axios.post('adminside/posts/', postData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => {
         Swal.fire({
             position: "center",
