@@ -119,7 +119,7 @@ function BlogPostForm() {
         setSelectedTags([]);
       })
       .catch((error) => {
-        console.error('Error creating post:', error);
+        console.error('Error creating posts:', error);
       });
   };
 
